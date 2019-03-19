@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="alumnos.controlador.FXMLMateriasController">
+  <children>
+    <Label id="label" layoutX="187.0" layoutY="141.0" minHeight="16.0" minWidth="69.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" layoutX="1.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="1.0" layoutY="47.0" stroke="$x1" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.616" green="0.322" red="0.094" fx:id="x1" />
+      </fill>
+    </Rectangle>
+    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="file:/E:/Alumnos/src/alumnos/icono/arkanlogo.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="475.0" layoutY="37.0" text="Materias" textFill="WHITE">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <TableView id="alumnosTableView" fx:id="materiasTableView" layoutX="75.0" layoutY="141.0" prefHeight="300.0" prefWidth="575.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="84.0" text="NRC" fx:id="nrcTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Nombre" fx:id="nombreTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="76.0" text="Creditos" fx:id="creditosTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="122.0" text="Horas Teóricas" fx:id="horasTeoricasTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="Horas Practicas" fx:id="horasPracticasTableColumn" />
+      </columns>
+    </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000999999975" layoutX="712.0" layoutY="141.0" stroke="#bfbfbf" strokeType="INSIDE" width="295.0" />
+    <Label layoutX="736.0" layoutY="157.0" text="NRC" />
+    <TextField id="matriculaTextField" fx:id="nrcTextField" layoutX="736.0" layoutY="173.0" prefWidth="200.0" />
+    <Label layoutX="736.0" layoutY="205.0" text="Nombre" />
+    <TextField id="matriculaTextField" fx:id="nombreTextField" layoutX="736.0" layoutY="221.0" prefWidth="200.0" />
+    <Label layoutX="736.0" layoutY="253.0" text="Creditos" />
+    <TextField id="matriculaTextField" fx:id="creditosTextField" layoutX="736.0" layoutY="269.0" prefWidth="200.0" />
+    <Label layoutX="736.0" layoutY="297.0" text="Horas Teóricas" />
+    <TextField id="matriculaTextField" fx:id="horasTeoricasTextField" layoutX="736.0" layoutY="313.0" prefWidth="200.0" />
+    <Button fx:id="agregarButton" layoutX="96.0" layoutY="458.0" mnemonicParsing="false" text="Agregar" textFill="$x1">
+      <font>
+        <Font size="18.0" fx:id="x2" />
+      </font>
+    </Button>
+    <Button fx:id="editarButton" font="$x2" layoutX="320.0" layoutY="458.0" mnemonicParsing="false" prefWidth="94.0" text="Editar" textFill="$x1" />
+    <Button fx:id="eliminarButton" font="$x2" layoutX="525.0" layoutY="458.0" mnemonicParsing="false" text="Eliminar" textFill="$x1" />
+    <Button fx:id="limpiarButton" font="$x2" layoutX="757.0" layoutY="458.0" mnemonicParsing="false" prefWidth="94.0" text="Limpiar" textFill="$x1" />
+    <Button fx:id="guardarButton" disable="true" font="$x2" layoutX="860.0" layoutY="458.0" mnemonicParsing="false" text="Guardar" textFill="$x1" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="25.0" layoutX="1.0" layoutY="600.0" stroke="$x1" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="1.0" layoutY="579.0" stroke="$x3" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.337" green="0.678" red="0.157" fx:id="x3" />
+      </fill>
+    </Rectangle>
+    <Button id="salirButton" fx:id="guardarBDButton" layoutX="882.0" layoutY="537.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar en base de datos" textFill="$x1">
+      <font>
+        <Font size="16.0" fx:id="x4" />
+      </font>
+    </Button>
+    <Button id="salirButton" fx:id="cargarBDButton" font="$x4" layoutX="15.0" layoutY="537.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
+    <Label layoutX="736.0" layoutY="343.0" text="Horas Practicas" />
+    <TextField id="matriculaTextField" fx:id="horasPracticasTextField" layoutX="736.0" layoutY="359.0" prefWidth="200.0" />
+  </children>
+</AnchorPane>

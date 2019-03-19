@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="alumnos.controlador.FXMLAlumnosController">
+  <children>
+    <Label fx:id="label" layoutX="186.0" layoutY="130.0" minHeight="16.0" minWidth="69.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" layoutX="0.0" layoutY="-8.0" stroke="WHITE" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="0.0" layoutY="36.0" stroke="$x1" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.616" green="0.322" red="0.094" fx:id="x1" />
+      </fill>
+    </Rectangle>
+    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="28.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../icono/arkanlogo.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="474.0" layoutY="26.0" text="Alumnos" textFill="WHITE">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <Button fx:id="salirButton" layoutX="1006.0" layoutY="45.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Salir" textFill="$x1">
+      <font>
+        <Font size="18.0" fx:id="x2" />
+      </font>
+    </Button>
+    <TableView fx:id="alumnosTableView" layoutX="74.0" layoutY="130.0" prefHeight="300.0" prefWidth="575.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="116.0" text="Matrícula" fx:id="matriculaTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="131.0" text="Nombre" fx:id="nombreTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="161.0" text="Apellido Paterno" fx:id="apellidoPaternoTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="154.0" text="Apellido Materno" fx:id="apellidoMaternoTableColumn" />
+      </columns>
+    </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000999999975" layoutX="711.0" layoutY="130.0" stroke="#bfbfbf" strokeType="INSIDE" width="295.0" />
+    <Label layoutX="735.0" layoutY="146.0" text="Matrícula" />
+    <TextField fx:id="matriculaTextField" layoutX="735.0" layoutY="162.0" prefWidth="200.0" />
+    <Label layoutX="735.0" layoutY="194.0" text="Nombre" />
+    <TextField id="matriculaTextField" fx:id="nombreTextField" layoutX="735.0" layoutY="210.0" prefWidth="200.0" />
+    <Label layoutX="735.0" layoutY="242.0" text="Apellido Paterno" />
+    <TextField id="matriculaTextField" fx:id="apellidoPaternoTextField" layoutX="735.0" layoutY="258.0" prefWidth="200.0" />
+    <Label layoutX="735.0" layoutY="286.0" text="Apellido Materno" />
+    <TextField id="matriculaTextField" fx:id="apellidoMaternoTextField" layoutX="735.0" layoutY="302.0" prefWidth="200.0" />
+    <Button fx:id="agregarButton" font="$x2" layoutX="95.0" layoutY="447.0" mnemonicParsing="false" text="Agregar" textFill="$x1" />
+    <Button fx:id="editarButton" font="$x2" layoutX="319.0" layoutY="447.0" mnemonicParsing="false" prefWidth="94.0" text="Editar" textFill="$x1" />
+    <Button fx:id="eliminarButton" font="$x2" layoutX="524.0" layoutY="447.0" mnemonicParsing="false" text="Eliminar" textFill="$x1" />
+    <Button fx:id="limpiarButton" font="$x2" layoutX="756.0" layoutY="447.0" mnemonicParsing="false" prefWidth="94.0" text="Limpiar" textFill="$x1" />
+    <Button fx:id="guardarButton" disable="true" font="$x2" layoutX="859.0" layoutY="447.0" mnemonicParsing="false" text="Guardar" textFill="$x1" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="25.0" layoutX="0.0" layoutY="589.0" stroke="$x1" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="0.0" layoutY="568.0" stroke="$x4" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.337" green="0.678" red="0.157" fx:id="x4" />
+      </fill>
+    </Rectangle>
+    <Button id="salirButton" fx:id="guardarArchivoButton" layoutX="925.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="Guardar archivo" textFill="$x1">
+      <font>
+        <Font size="16.0" fx:id="x3" />
+      </font>
+    </Button>
+    <Button id="salirButton" fx:id="guardarBDButton" font="$x3" layoutX="711.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar en base de datos" textFill="$x1" />
+    <Button id="salirButton" fx:id="cargarArchivoButton" font="$x3" layoutX="205.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="136.0" text="Cargar archivo" textFill="$x1" />
+    <Button id="salirButton" fx:id="cargarBDButton" font="$x3" layoutX="14.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
+    <MenuBar fx:id="menuBar" layoutX="0.0" layoutY="0.0" prefWidth="1100.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Materias" fx:id="menuItemMaterias" />
+            <MenuItem mnemonicParsing="false" text="Horarios de las materias" fx:id="horariosMateriasMenuItem" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </children>
+</AnchorPane>

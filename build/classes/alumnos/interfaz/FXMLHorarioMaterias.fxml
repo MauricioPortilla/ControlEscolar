@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="alumnos.controlador.FXMLHorarioMateriasController">
+  <children>
+    <Label id="label" layoutX="190.0" layoutY="144.0" minHeight="16.0" minWidth="69.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" layoutX="4.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="4.0" layoutY="50.0" stroke="$x1" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.616" green="0.322" red="0.094" fx:id="x1" />
+      </fill>
+    </Rectangle>
+    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="file:/E:/Alumnos/src/alumnos/icono/arkanlogo.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="478.0" layoutY="40.0" text="Horarios" textFill="WHITE">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <TableView fx:id="horariosTableView" layoutX="78.0" layoutY="144.0" prefHeight="300.0" prefWidth="575.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" text="Materia" fx:id="materiaTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="Salón" fx:id="salonTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="97.0" text="Hora Inicio" fx:id="horaInicioTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="96.0" text="Hora Fin" fx:id="horaFinTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="Día" fx:id="diaTableColumn" />
+      </columns>
+    </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000999999975" layoutX="715.0" layoutY="144.0" stroke="#bfbfbf" strokeType="INSIDE" width="295.0" />
+    <Label layoutX="739.0" layoutY="160.0" text="Materia" />
+    <Label layoutX="739.0" layoutY="208.0" text="Salón" />
+    <TextField fx:id="salonTextField" layoutX="739.0" layoutY="224.0" prefWidth="200.0" />
+    <Label layoutX="739.0" layoutY="256.0" text="Hora Inicio" />
+    <TextField fx:id="horaInicioTextField" layoutX="739.0" layoutY="272.0" prefWidth="200.0" promptText="08:59" />
+    <Label layoutX="739.0" layoutY="300.0" text="Hora Fin" />
+    <TextField fx:id="horaFinTextField" layoutX="739.0" layoutY="316.0" prefWidth="200.0" promptText="23:59" />
+    <Button fx:id="agregarButton" layoutX="99.0" layoutY="461.0" mnemonicParsing="false" text="Agregar" textFill="$x1">
+      <font>
+        <Font size="18.0" fx:id="x2" />
+      </font>
+    </Button>
+    <Button fx:id="editarButton" font="$x2" layoutX="323.0" layoutY="461.0" mnemonicParsing="false" prefWidth="94.0" text="Editar" textFill="$x1" />
+    <Button fx:id="eliminarButton" font="$x2" layoutX="528.0" layoutY="461.0" mnemonicParsing="false" text="Eliminar" textFill="$x1" />
+    <Button fx:id="limpiarButton" font="$x2" layoutX="760.0" layoutY="461.0" mnemonicParsing="false" prefWidth="94.0" text="Limpiar" textFill="$x1" />
+    <Button fx:id="guardarButton" disable="true" font="$x2" layoutX="863.0" layoutY="461.0" mnemonicParsing="false" text="Guardar" textFill="$x1" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="25.0" layoutX="4.0" layoutY="603.0" stroke="$x1" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="4.0" layoutY="582.0" stroke="$x3" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.337" green="0.678" red="0.157" fx:id="x3" />
+      </fill>
+    </Rectangle>
+    <Button id="salirButton" fx:id="guardarBDButton" layoutX="885.0" layoutY="540.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar en base de datos" textFill="$x1">
+      <font>
+        <Font size="16.0" fx:id="x4" />
+      </font>
+    </Button>
+    <Button id="salirButton" fx:id="cargarBDButton" font="$x4" layoutX="18.0" layoutY="540.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
+    <Label layoutX="739.0" layoutY="346.0" text="Día" />
+    <TextField fx:id="diaTextField" layoutX="739.0" layoutY="362.0" prefWidth="200.0" />
+    <ComboBox fx:id="materiaComboBox" layoutX="739.0" layoutY="177.0" prefHeight="21.0" prefWidth="200.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+  </children>
+</AnchorPane>
