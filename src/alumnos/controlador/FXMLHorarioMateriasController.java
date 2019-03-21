@@ -44,7 +44,7 @@ public class FXMLHorarioMateriasController {
     private TableColumn<HorarioMateria, String> diaTableColumn;
 
     @FXML
-    private TextField diaTextField;
+    private ComboBox<String> diaComboBox;
 
     @FXML
     private Button editarButton;
@@ -105,6 +105,11 @@ public class FXMLHorarioMateriasController {
         diaTableColumn.setCellValueFactory(new PropertyValueFactory<>("dia"));
         horariosTableView.setItems(observerHorarios);
 
+        ObservableList<String> dias = FXCollections.observableArrayList(
+            "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+        );
+        diaComboBox.setItems(dias);
+
         MateriaDAO materiaDAO = new MateriaDAO();
         materiaDAO.loadMaterias();
         materiaComboBox.setItems(materiaDAO.getMaterias());
@@ -132,7 +137,7 @@ public class FXMLHorarioMateriasController {
                     salonTextField.getText().isEmpty() ||
                     horaInicioTextField.getText().isEmpty() ||
                     horaFinTextField.getText().isEmpty() ||
-                    diaTextField.getText().isEmpty()
+                    diaComboBox.getValue() == null
                 ){
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
@@ -146,7 +151,7 @@ public class FXMLHorarioMateriasController {
                     salonTextField.getText(), 
                     LocalTime.parse(horaInicioTextField.getText()), 
                     LocalTime.parse(horaFinTextField.getText()), 
-                    diaTextField.getText()
+                    diaComboBox.getValue()
                 );
                 observerHorarios.add(nuevoHorario);
                 horariosToInsert.add(nuevoHorario);
@@ -178,7 +183,7 @@ public class FXMLHorarioMateriasController {
                 salonTextField.setText(horarioSelected.getSalon());
                 horaInicioTextField.setText(horarioSelected.getHoraInicio().toString());
                 horaFinTextField.setText(horarioSelected.getHoraFin().toString());
-                diaTextField.setText(horarioSelected.getDia());
+                diaComboBox.getSelectionModel().select(horarioSelected.getDia());
                 guardarButton.setDisable(false);
             }
         };
@@ -258,7 +263,7 @@ public class FXMLHorarioMateriasController {
                 }
                 horarioSelected.setMateria(materiaComboBox.getSelectionModel().getSelectedItem());
                 horarioSelected.setSalon(salonTextField.getText());
-                horarioSelected.setDia(diaTextField.getText());
+                horarioSelected.setDia(diaComboBox.getSelectionModel().getSelectedItem());
 
                 horariosTableView.getItems().add(horarioSelected);
                 horariosToUpdate.add(horarioSelected);
@@ -328,7 +333,7 @@ public class FXMLHorarioMateriasController {
         salonTextField.clear();
         horaInicioTextField.clear();
         horaFinTextField.clear();
-        diaTextField.clear();
+        diaComboBox.getSelectionModel().clearSelection();
         horarioSelected = null;
     }
 

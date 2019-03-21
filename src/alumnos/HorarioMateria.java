@@ -138,4 +138,29 @@ public class HorarioMateria {
     public String getDia(){
         return dia;
     }
+
+    /**
+     * Verifica si el horario ingresado coinciden con el día, la hora de inicio y
+     * la hora de fin.
+     * 
+     * @param obj horario a comparar
+     * @return <code>True</code> si coinciden, <code>False</code> si no.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof HorarioMateria)) {
+            return false;
+        }
+        HorarioMateria horario = (HorarioMateria) obj;
+        if (dia.equals(horario.dia)) {
+            return true;
+        }
+        if (horaInicio.equals(horario.horaInicio)) {
+            return true; 
+        }
+        if (horaFin.equals(horario.horaFin)) {
+            return true;
+        }
+        return false;
+    }
 }

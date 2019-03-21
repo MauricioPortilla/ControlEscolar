@@ -69,8 +69,16 @@
     </Button>
     <Button id="salirButton" fx:id="cargarBDButton" font="$x4" layoutX="18.0" layoutY="540.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
     <Label layoutX="739.0" layoutY="346.0" text="Día" />
-    <TextField fx:id="diaTextField" layoutX="739.0" layoutY="362.0" prefWidth="200.0" />
     <ComboBox fx:id="materiaComboBox" layoutX="739.0" layoutY="177.0" prefHeight="21.0" prefWidth="200.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ComboBox fx:id="diaComboBox" layoutX="739.0" layoutY="363.0" prefHeight="21.0" prefWidth="200.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
