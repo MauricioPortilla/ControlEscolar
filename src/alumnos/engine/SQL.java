@@ -17,12 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
-<<<<<<< HEAD
-/**
- * @author Mauricio Cruz Portilla
- */
-=======
->>>>>>> Implementacion de base de datos para horarios de alumnos
 public class SQL {
     public static Statement statement;
 
