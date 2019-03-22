@@ -9,7 +9,11 @@
 
 package alumnos;
 
+import alumnos.engine.SQL;
+import alumnos.engine.SQLRow;
+import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class HorarioMateria {
     private int id = 0;
@@ -39,6 +43,28 @@ public class HorarioMateria {
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.dia = dia;
+    }
+
+    /**
+     * Crea un objeto HorarioMateria a partir de su id
+     */
+    public HorarioMateria(int id) {
+        SQL.executeQuery(
+            "SELECT * FROM horarioMateria WHERE idhorario = ?", 
+            new ArrayList<Object>(){{
+                add(id);
+            }}, (result) -> {
+                for (SQLRow row : result) {
+                    this.id = (int) row.getColumnData("idhorario");
+                    this.materia = new Materia((int) row.getColumnData("idmateria"));
+                    this.salon = row.getColumnData("salon").toString();
+                    this.horaInicio = ((Time) row.getColumnData("horaInicio")).toLocalTime();
+                    this.horaFin = ((Time) row.getColumnData("horaFin")).toLocalTime();
+                    this.dia = row.getColumnData("dia").toString();
+                }
+                return true;
+            }
+        );
     }
 
     /**

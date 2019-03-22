@@ -8,7 +8,10 @@
 
 package alumnos;
 
+import alumnos.engine.SQL;
+import alumnos.engine.SQLRow;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -19,7 +22,7 @@ public class Alumno implements Serializable {
     private String apellidoMaternoString;
     private String matriculaString;
 
-	private transient SimpleStringProperty nombre;
+    private transient SimpleStringProperty nombre;
     private transient SimpleStringProperty apellidoPaterno;
     private transient SimpleStringProperty apellidoMaterno;
     private transient SimpleStringProperty matricula;
@@ -40,6 +43,32 @@ public class Alumno implements Serializable {
         apellidoPaternoString = paterno;
         apellidoMaternoString = materno;
         matriculaString = matricula;
+    }
+
+    /**
+     * Crea un objeto Alumno a partir de su matricula
+     * 
+     * @param matricula matricula
+     */
+    public Alumno(String matricula) {
+        SQL.executeQuery(
+            "SELECT * FROM alumno WHERE matricula = ?", 
+            new ArrayList<Object>() {{
+                add(matricula);
+            }}, (result) -> {
+                for (SQLRow row : result) {
+                    nombreString = row.getColumnData("nombre").toString();
+                    apellidoPaternoString = row.getColumnData("paterno").toString();
+                    apellidoMaternoString = row.getColumnData("materno").toString();
+                    matriculaString = row.getColumnData("matricula").toString();
+                    nombre = new SimpleStringProperty(nombreString);
+                    apellidoPaterno = new SimpleStringProperty(apellidoPaternoString);
+                    apellidoMaterno = new SimpleStringProperty(apellidoMaternoString);
+                    this.matricula = new SimpleStringProperty(matriculaString);
+                }
+                return true;
+            }
+        );
     }
 
     /**

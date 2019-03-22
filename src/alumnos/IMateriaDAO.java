@@ -10,10 +10,6 @@ package alumnos;
 
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author Mauricio CP
- */
 public interface IMateriaDAO {
     /**
      * Carga las materias desde la base de datos

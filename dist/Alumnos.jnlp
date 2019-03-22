@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="Alumnos.jar" size="724806" download="eager" />
+=======
+    <jar href="Alumnos.jar" size="733064" download="eager" />
+>>>>>>> Implementacion de base de datos para horarios de alumnos
     <jar href="lib\mysql-connector-java-5.1.47-bin.jar" size="1007505" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Alumnos" >

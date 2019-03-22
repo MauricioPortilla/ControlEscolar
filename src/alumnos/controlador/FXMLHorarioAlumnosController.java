@@ -1,3 +1,13 @@
+/**
+ * FXMLHorarioAlumnosController es la clase que posee los elementos
+ * de la ventana, asi como sus respectivas acciones que permiten
+ * llevar el control de tablas con los horarios disponibles y los elegidos.
+ * 
+ * @author Mauricio Cruz Portilla
+ * @version 1.0
+ * @since 2019/03/21
+ */
+
 package alumnos.controlador;
 
 import java.net.URL;
@@ -6,8 +16,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import alumnos.Alumno;
+import alumnos.HorarioAlumno;
+import alumnos.HorarioAlumnoDAO;
 import alumnos.HorarioMateria;
 import alumnos.HorarioMateriaDAO;
+import alumnos.IHorarioAlumnoDAO;
 import alumnos.IHorarioMateriaDAO;
 import alumnos.Materia;
 import javafx.collections.FXCollections;
@@ -85,6 +98,7 @@ public class FXMLHorarioAlumnosController {
     private final ArrayList<HorarioMateria> horariosToDelete = new ArrayList<>();
 
     private final IHorarioMateriaDAO horarioDAO = new HorarioMateriaDAO();
+    private final IHorarioAlumnoDAO horarioAlumnoDAO = new HorarioAlumnoDAO();
 
     @FXML
     void initialize() {
@@ -106,6 +120,7 @@ public class FXMLHorarioAlumnosController {
 
         agregarButton.setOnAction(agregarButtonHandler());
         eliminarButton.setOnAction(eliminarButtonHandler());
+        guardarBDButton.setOnAction(guardarBDButtonHandler());
     }
 
     /**
@@ -118,6 +133,12 @@ public class FXMLHorarioAlumnosController {
         System.out.println(this.alumno);
     }
 
+    /**
+     * Retorna el evento de agregar un horario seleccionado de los
+     * disponibles a la tabla de horarios elegidos.
+     * 
+     * @return el evento
+     */
     private EventHandler<ActionEvent> agregarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
@@ -138,11 +159,17 @@ public class FXMLHorarioAlumnosController {
                 }
                 horarioElegidoTableView.getItems().add(horarioSelected);
                 horarioDisponibleTableView.getItems().remove(horarioSelected);
+                horariosToInsert.add(horarioSelected);
                 horarioSelected = null;
             }
         };
     }
 
+    /**
+     * Retorna el evento que elimina un horario de la tabla de elegidos.
+     * 
+     * @return el evento
+     */
     private EventHandler<ActionEvent> eliminarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
@@ -155,6 +182,33 @@ public class FXMLHorarioAlumnosController {
                 horarioDisponibleTableView.getItems().add(horarioSelected);
                 horarioElegidoTableView.getItems().remove(horarioSelected);
                 horarioSelected = null;
+            }
+        };
+    }
+
+    /**
+     * Retorna el evento que guarda en la base de datos los horarios elegidos.
+     * 
+     * @return el evento
+     */
+    private EventHandler<ActionEvent> guardarBDButtonHandler() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (HorarioMateria horarioMateria : horariosToInsert) {
+                    horarioAlumnoDAO.insertHorarioAlumno(
+                        new HorarioAlumno(0, horarioMateria.getId(), alumno.getMatricula())
+                    );
+                }
+                /*for (HorarioMateria horarioMateria : horariosToDelete) {
+                    horarioAlumnoDAO.deleteHorarioAlumno(
+                        new HorarioAlumno()
+                    );
+                }*/
+                Alert saveAlert = new Alert(AlertType.INFORMATION, "Horarios guardados.");
+                saveAlert.show();
+                horariosToInsert.clear();
+                horariosToDelete.clear();
             }
         };
     }

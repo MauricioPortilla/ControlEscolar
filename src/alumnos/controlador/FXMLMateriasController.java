@@ -1,3 +1,13 @@
+/**
+ * FXMLMateriasController es la clase que posee los elementos
+ * de la ventana, asi como sus respectivas acciones que permiten
+ * llevar el control de una tabla de materias.
+ * 
+ * @author Mauricio Cruz Portilla
+ * @version 1.0
+ * @since 2019/03/21
+ */
+
 package alumnos.controlador;
 
 import java.net.URL;

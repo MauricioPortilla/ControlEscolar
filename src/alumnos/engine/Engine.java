@@ -38,6 +38,13 @@ public class Engine {
                 "horaInicio time NOT NULL," +
                 "horaFin time NOT NULL," +
                 "dia varchar(10) NOT NULL" +
+            ");" +
+            "CREATE TABLE IF NOT EXISTS AlumnosDB.horarioAlumno (" +
+                "idhorarioAlumno int PRIMARY KEY NOT NULL AUTO_INCREMENT," +
+                "idhorarioMateria int NOT NULL," +
+                "FOREIGN KEY (idhorarioMateria) REFERENCES horarioMateria(idhorario)," +
+                "matriculaAlumno varchar(9) NOT NULL," +
+                "FOREIGN KEY (matriculaAlumno) REFERENCES alumno(matricula)" +
             ");", false
         );
     }
