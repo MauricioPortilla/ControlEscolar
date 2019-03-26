@@ -41,12 +41,31 @@
     </TableView>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000999999975" layoutX="715.0" layoutY="144.0" stroke="#bfbfbf" strokeType="INSIDE" width="295.0" />
     <Label layoutX="739.0" layoutY="160.0" text="Materia" />
+    <ComboBox fx:id="materiaComboBox" layoutX="739.0" layoutY="177.0" prefHeight="21.0" prefWidth="200.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
     <Label layoutX="739.0" layoutY="208.0" text="Salón" />
     <TextField fx:id="salonTextField" layoutX="739.0" layoutY="224.0" prefWidth="200.0" />
     <Label layoutX="739.0" layoutY="256.0" text="Hora Inicio" />
     <TextField fx:id="horaInicioTextField" layoutX="739.0" layoutY="272.0" prefWidth="200.0" promptText="08:59" />
     <Label layoutX="739.0" layoutY="300.0" text="Hora Fin" />
     <TextField fx:id="horaFinTextField" layoutX="739.0" layoutY="316.0" prefWidth="200.0" promptText="23:59" />
+    <Label layoutX="739.0" layoutY="346.0" text="Día" />
+    <ComboBox fx:id="diaComboBox" layoutX="739.0" layoutY="363.0" prefHeight="21.0" prefWidth="200.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
     <Button fx:id="agregarButton" layoutX="99.0" layoutY="461.0" mnemonicParsing="false" text="Agregar" textFill="$x1">
       <font>
         <Font size="18.0" fx:id="x2" />
@@ -68,24 +87,5 @@
       </font>
     </Button>
     <Button id="salirButton" fx:id="cargarBDButton" font="$x4" layoutX="18.0" layoutY="540.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
-    <Label layoutX="739.0" layoutY="346.0" text="Día" />
-    <ComboBox fx:id="materiaComboBox" layoutX="739.0" layoutY="177.0" prefHeight="21.0" prefWidth="200.0">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="Item 1" />
-          <String fx:value="Item 2" />
-          <String fx:value="Item 3" />
-        </FXCollections>
-      </items>
-    </ComboBox>
-    <ComboBox fx:id="diaComboBox" layoutX="739.0" layoutY="363.0" prefHeight="21.0" prefWidth="200.0">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="Item 1" />
-          <String fx:value="Item 2" />
-          <String fx:value="Item 3" />
-        </FXCollections>
-      </items>
-    </ComboBox>
   </children>
 </AnchorPane>

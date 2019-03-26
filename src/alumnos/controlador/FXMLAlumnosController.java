@@ -167,6 +167,8 @@ public class FXMLAlumnosController {
         menuItemMaterias.setOnAction(materiasFormButtonHandler());
         horariosMateriasMenuItem.setOnAction(horariosMateriasFormButtonHandler());
         asignarHorarioMenuItem.setOnAction(horariosAlumnosFormButtonHandler());
+
+        cargarBDButton.fire();
     }
 
     /**
@@ -297,17 +299,17 @@ public class FXMLAlumnosController {
                     warningAlert.show();
                     return;
                 }
-                alumnosTableView.getItems().remove(alumnoSelected);
                 
                 alumnoSelected.setNombre(nombreTextField.getText());
                 alumnoSelected.setApellidoPaterno(apellidoPaternoTextField.getText());
                 alumnoSelected.setApellidoMaterno(apellidoMaternoTextField.getText());
                 alumnoSelected.setMatricula(matriculaTextField.getText());
                 
-                alumnosTableView.getItems().add(alumnoSelected);
                 alumnosToUpdate.add(alumnoSelected);
                 cleanAlumnoForm();
                 guardarButton.setDisable(true);
+
+                alumnosTableView.refresh();
             }
         };
     }

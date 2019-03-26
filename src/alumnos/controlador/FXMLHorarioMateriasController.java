@@ -131,6 +131,9 @@ public class FXMLHorarioMateriasController {
         guardarButton.setOnAction(guardarButtonHandler());
         guardarBDButton.setOnAction(guardarBDButtonHandler());
         cargarBDButton.setOnAction(cargarBDButtonHandler());
+
+        cargarBDButton.fire();
+        cargarBDButton.setVisible(false);
     }
 
     /**
@@ -253,7 +256,6 @@ public class FXMLHorarioMateriasController {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                horarioSelected = horariosTableView.getSelectionModel().getSelectedItem();
                 if(horarioSelected == null){
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
@@ -262,7 +264,6 @@ public class FXMLHorarioMateriasController {
                     warningAlert.show();
                     return;
                 }
-                horariosTableView.getItems().remove(horarioSelected);
                 
                 try {
                     horarioSelected.setHoraInicio(LocalTime.parse(horaInicioTextField.getText()));
@@ -275,10 +276,11 @@ public class FXMLHorarioMateriasController {
                 horarioSelected.setSalon(salonTextField.getText());
                 horarioSelected.setDia(diaComboBox.getSelectionModel().getSelectedItem());
 
-                horariosTableView.getItems().add(horarioSelected);
                 horariosToUpdate.add(horarioSelected);
                 cleanHorarioForm();
                 guardarButton.setDisable(true);
+
+                horariosTableView.refresh();
             }
         };
     }
@@ -323,11 +325,6 @@ public class FXMLHorarioMateriasController {
                 horarioDAO.loadHorariosMaterias();
                 observerHorarios = horarioDAO.getHorariosMaterias();
                 horariosTableView.setItems(observerHorarios);
-                Alert saveAlert = new Alert(
-                    AlertType.INFORMATION, 
-                    "Horarios cargados."
-                );
-                saveAlert.show();
                 horariosToInsert.clear();
                 horariosToUpdate.clear();
                 horariosToDelete.clear();

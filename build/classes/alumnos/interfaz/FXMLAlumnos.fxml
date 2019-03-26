@@ -72,20 +72,15 @@
     <Button id="salirButton" fx:id="cargarBDButton" font="$x3" layoutX="14.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
     <MenuBar fx:id="menuBar" layoutX="0.0" layoutY="0.0" prefWidth="1100.0">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Opciones">
           <items>
             <MenuItem mnemonicParsing="false" text="Materias" fx:id="menuItemMaterias" />
             <MenuItem mnemonicParsing="false" text="Horarios de las materias" fx:id="horariosMateriasMenuItem" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        <Menu mnemonicParsing="false" text="Alumno">
           <items>
             <MenuItem mnemonicParsing="false" text="Asignar horario" fx:id="asignarHorarioMenuItem" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
           </items>
         </Menu>
       </menus>

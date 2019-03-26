@@ -48,6 +48,15 @@ public class HorarioAlumnoDAO implements IHorarioAlumnoDAO {
     }
 
     @Override
+    public ObservableList<HorarioMateria> getHorariosAlumnoMateria() {
+        ObservableList<HorarioMateria> horarioMateria = FXCollections.observableArrayList();
+        for (HorarioAlumno horario : horariosAlumno) {
+            horarioMateria.add(horario.getHorarioMateria());
+        }
+        return horarioMateria;
+    }
+
+    @Override
     public HorarioAlumno insertHorarioAlumno(HorarioAlumno horarioAlumno) {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(horarioAlumno.getHorarioMateria().getId());
@@ -66,9 +75,10 @@ public class HorarioAlumnoDAO implements IHorarioAlumnoDAO {
     @Override
     public HorarioAlumno deleteHorarioAlumno(HorarioAlumno horarioAlumno) {
         SQL.executeUpdate(
-            "DELETE FROM horarioAlumno WHERE idhorarioAlumno = ?", 
+            "DELETE FROM horarioAlumno WHERE idhorarioMateria = ? AND matriculaAlumno = ?", 
             new ArrayList<Object>() {{
-                add(horarioAlumno.getId());
+                add(horarioAlumno.getHorarioMateria().getId());
+                add(horarioAlumno.getAlumno().getMatricula());
             }}
         );
         horariosAlumno.remove(horarioAlumno);

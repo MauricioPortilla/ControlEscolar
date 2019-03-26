@@ -130,7 +130,29 @@ public class FXMLHorarioAlumnosController {
      */
     void initData(Alumno alumno) {
         this.alumno = alumno;
-        System.out.println(this.alumno);
+        loadAlumnoHorarioBD();
+    }
+
+    /**
+     * Carga el horario del alumno desde la base de datos.
+     */
+    private void loadAlumnoHorarioBD() {
+        horarioDisponibleTableView.getItems().clear();
+        horarioElegidoTableView.getItems().clear();
+        horarioAlumnoDAO.loadHorariosAlumno(alumno);
+        observerHorariosElegidos = horarioAlumnoDAO.getHorariosAlumnoMateria();
+        horarioElegidoTableView.setItems(observerHorariosElegidos);
+        
+        horarioDAO.loadHorariosMaterias();
+        observerHorariosDisponibles = horarioDAO.getHorariosMaterias();
+        // Eliminar horarios elegidos de los disponibles
+        for (HorarioMateria horario : observerHorariosElegidos) {
+            observerHorariosDisponibles.remove(horario);
+        }
+        horarioDisponibleTableView.setItems(observerHorariosDisponibles);
+        
+        horariosToInsert.clear();
+        horariosToDelete.clear();
     }
 
     /**
@@ -160,6 +182,7 @@ public class FXMLHorarioAlumnosController {
                 horarioElegidoTableView.getItems().add(horarioSelected);
                 horarioDisponibleTableView.getItems().remove(horarioSelected);
                 horariosToInsert.add(horarioSelected);
+                horariosToDelete.remove(horarioSelected);
                 horarioSelected = null;
             }
         };
@@ -181,6 +204,8 @@ public class FXMLHorarioAlumnosController {
                 }
                 horarioDisponibleTableView.getItems().add(horarioSelected);
                 horarioElegidoTableView.getItems().remove(horarioSelected);
+                horariosToDelete.add(horarioSelected);
+                horariosToInsert.remove(horarioSelected);
                 horarioSelected = null;
             }
         };
@@ -200,13 +225,12 @@ public class FXMLHorarioAlumnosController {
                         new HorarioAlumno(0, horarioMateria.getId(), alumno.getMatricula())
                     );
                 }
-                /*for (HorarioMateria horarioMateria : horariosToDelete) {
+                for (HorarioMateria horarioMateria : horariosToDelete) {
                     horarioAlumnoDAO.deleteHorarioAlumno(
-                        new HorarioAlumno()
+                        new HorarioAlumno(0, horarioMateria.getId(), alumno.getMatricula())
                     );
-                }*/
-                Alert saveAlert = new Alert(AlertType.INFORMATION, "Horarios guardados.");
-                saveAlert.show();
+                }
+                new Alert(AlertType.INFORMATION, "Horarios guardados.").show();
                 horariosToInsert.clear();
                 horariosToDelete.clear();
             }

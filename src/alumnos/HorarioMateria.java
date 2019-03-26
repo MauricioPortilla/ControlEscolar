@@ -56,10 +56,14 @@ public class HorarioMateria {
             }}, (result) -> {
                 for (SQLRow row : result) {
                     this.id = (int) row.getColumnData("idhorario");
-                    this.materia = new Materia((int) row.getColumnData("idmateria"));
+                    this.materia = new Materia(
+                        (int) row.getColumnData("idmateria")
+                    );
                     this.salon = row.getColumnData("salon").toString();
-                    this.horaInicio = ((Time) row.getColumnData("horaInicio")).toLocalTime();
-                    this.horaFin = ((Time) row.getColumnData("horaFin")).toLocalTime();
+                    this.horaInicio = ((Time) row.getColumnData("horaInicio"))
+                            .toLocalTime();
+                    this.horaFin = ((Time) row.getColumnData("horaFin"))
+                            .toLocalTime();
                     this.dia = row.getColumnData("dia").toString();
                 }
                 return true;
@@ -166,8 +170,8 @@ public class HorarioMateria {
     }
 
     /**
-     * Verifica si el horario ingresado coinciden con el día, la hora de inicio y
-     * la hora de fin.
+     * Verifica si el horario ingresado coinciden con el día, la hora de inicio 
+     * y la hora de fin.
      * 
      * @param obj horario a comparar
      * @return <code>True</code> si coinciden, <code>False</code> si no.
@@ -179,13 +183,11 @@ public class HorarioMateria {
         }
         HorarioMateria horario = (HorarioMateria) obj;
         if (dia.equals(horario.dia)) {
-            return true;
-        }
-        if (horaInicio.equals(horario.horaInicio)) {
-            return true; 
-        }
-        if (horaFin.equals(horario.horaFin)) {
-            return true;
+            if (horaInicio.equals(horario.horaInicio) && 
+                horaFin.equals(horario.horaFin)
+            ) {
+                return true; 
+            }
         }
         return false;
     }

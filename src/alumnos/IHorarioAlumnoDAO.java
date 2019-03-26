@@ -26,6 +26,13 @@ public interface IHorarioAlumnoDAO {
     public ObservableList<HorarioAlumno> getHorariosAlumno();
 
     /**
+     * Retorna las materias asociadas con cada horario del alumno.
+     * 
+     * @return lista de materias del horario
+     */
+    public ObservableList<HorarioMateria> getHorariosAlumnoMateria();
+
+    /**
      * Inserta un horario de un alumno en la base de datos.
      * 
      * @param horarioAlumno horario de un alumno a ingresar
