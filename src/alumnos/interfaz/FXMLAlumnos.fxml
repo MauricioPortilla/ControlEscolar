@@ -42,15 +42,15 @@
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="154.0" text="Apellido Materno" fx:id="apellidoMaternoTableColumn" />
       </columns>
     </TableView>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000999999975" layoutX="711.0" layoutY="130.0" stroke="#bfbfbf" strokeType="INSIDE" width="295.0" />
-    <Label layoutX="735.0" layoutY="146.0" text="Matrícula" />
-    <TextField fx:id="matriculaTextField" layoutX="735.0" layoutY="162.0" prefWidth="200.0" />
-    <Label layoutX="735.0" layoutY="194.0" text="Nombre" />
-    <TextField id="matriculaTextField" fx:id="nombreTextField" layoutX="735.0" layoutY="210.0" prefWidth="200.0" />
-    <Label layoutX="735.0" layoutY="242.0" text="Apellido Paterno" />
-    <TextField id="matriculaTextField" fx:id="apellidoPaternoTextField" layoutX="735.0" layoutY="258.0" prefWidth="200.0" />
-    <Label layoutX="735.0" layoutY="286.0" text="Apellido Materno" />
-    <TextField id="matriculaTextField" fx:id="apellidoMaternoTextField" layoutX="735.0" layoutY="302.0" prefWidth="200.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="300.0000915527344" layoutX="711.0" layoutY="130.0" stroke="#bfbfbf" strokeType="INSIDE" width="273.0" />
+    <Label layoutX="735.0" layoutY="156.0" text="Matrícula" />
+    <TextField fx:id="matriculaTextField" layoutX="735.0" layoutY="172.0" prefWidth="218.0" />
+    <Label layoutX="735.0" layoutY="214.0" text="Nombre" />
+    <TextField fx:id="nombreTextField" layoutX="735.0" layoutY="230.0" prefWidth="218.0" />
+    <Label layoutX="735.0" layoutY="272.0" text="Apellido Paterno" />
+    <TextField fx:id="apellidoPaternoTextField" layoutX="735.0" layoutY="288.0" prefWidth="218.0" />
+    <Label layoutX="735.0" layoutY="336.0" text="Apellido Materno" />
+    <TextField fx:id="apellidoMaternoTextField" layoutX="735.0" layoutY="352.0" prefWidth="218.0" />
     <Button fx:id="agregarButton" font="$x2" layoutX="95.0" layoutY="447.0" mnemonicParsing="false" text="Agregar" textFill="$x1" />
     <Button fx:id="editarButton" font="$x2" layoutX="319.0" layoutY="447.0" mnemonicParsing="false" prefWidth="94.0" text="Editar" textFill="$x1" />
     <Button fx:id="eliminarButton" font="$x2" layoutX="524.0" layoutY="447.0" mnemonicParsing="false" text="Eliminar" textFill="$x1" />
@@ -62,14 +62,14 @@
         <Color blue="0.337" green="0.678" red="0.157" fx:id="x4" />
       </fill>
     </Rectangle>
-    <Button id="salirButton" fx:id="guardarArchivoButton" layoutX="925.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="Guardar archivo" textFill="$x1">
+    <Button fx:id="guardarArchivoButton" layoutX="755.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="Guardar archivo" textFill="$x1">
       <font>
         <Font size="16.0" fx:id="x3" />
       </font>
     </Button>
-    <Button id="salirButton" fx:id="guardarBDButton" font="$x3" layoutX="711.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar en base de datos" textFill="$x1" />
-    <Button id="salirButton" fx:id="cargarArchivoButton" font="$x3" layoutX="205.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="136.0" text="Cargar archivo" textFill="$x1" />
-    <Button id="salirButton" fx:id="cargarBDButton" font="$x3" layoutX="14.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
+    <Button fx:id="guardarBDButton" font="$x3" layoutX="923.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="166.0" text="Guardar cambios" textFill="$x1" />
+    <Button fx:id="cargarArchivoButton" font="$x3" layoutX="205.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="136.0" text="Cargar archivo" textFill="$x1" />
+    <Button fx:id="cargarBDButton" font="$x3" layoutX="14.0" layoutY="526.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="Cargar base de datos" textFill="$x1" />
     <MenuBar fx:id="menuBar" layoutX="0.0" layoutY="0.0" prefWidth="1100.0">
       <menus>
         <Menu mnemonicParsing="false" text="Opciones">

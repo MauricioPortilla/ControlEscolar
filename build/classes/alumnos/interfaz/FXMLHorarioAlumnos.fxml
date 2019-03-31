@@ -50,7 +50,7 @@
         <Color blue="0.337" green="0.678" red="0.157" fx:id="x3" />
       </fill>
     </Rectangle>
-    <Button id="salirButton" fx:id="guardarBDButton" layoutX="991.0" layoutY="523.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar en base de datos" textFill="$x1">
+    <Button id="salirButton" fx:id="guardarBDButton" layoutX="991.0" layoutY="523.0" minHeight="29.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" text="Guardar cambios" textFill="$x1">
       <font>
         <Font size="16.0" />
       </font>

@@ -168,6 +168,10 @@ public class FXMLAlumnosController {
         horariosMateriasMenuItem.setOnAction(horariosMateriasFormButtonHandler());
         asignarHorarioMenuItem.setOnAction(horariosAlumnosFormButtonHandler());
 
+        cargarBDButton.setVisible(false);
+        cargarArchivoButton.setVisible(false);
+        guardarArchivoButton.setVisible(false);
+
         cargarBDButton.fire();
     }
 
@@ -414,8 +418,7 @@ public class FXMLAlumnosController {
                 alumnoDAO.loadAlumnos();
                 observerAlumnos = alumnoDAO.getAlumnos();
                 alumnosTableView.setItems(observerAlumnos);
-                Alert saveAlert = new Alert(AlertType.INFORMATION, "Alumnos cargados.");
-                saveAlert.show();
+                // new Alert(AlertType.INFORMATION, "Alumnos cargados.").show();
                 alumnosToInsert.clear();
                 alumnosToUpdate.clear();
                 alumnosToDelete.clear();
@@ -551,7 +554,8 @@ public class FXMLAlumnosController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene((AnchorPane)loader.load()));
                     stage.setTitle("Control de horarios de alumnos - Mauricio Cruz Portilla");
-                    FXMLHorarioAlumnosController controller = loader.<FXMLHorarioAlumnosController>getController();
+                    FXMLHorarioAlumnosController controller = loader.
+                        <FXMLHorarioAlumnosController>getController();
                     controller.initData(alumnosTableView.getSelectionModel().getSelectedItem());
                     stage.show();
                 } catch (IOException ex) {
