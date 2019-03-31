@@ -28,7 +28,8 @@ public class Engine {
                 "nombre varchar(50) NOT NULL," +
                 "creditos int NOT NULL," +
                 "horasTeoricas int NOT NULL," +
-                "horasPracticas int NOT NULL" +
+                "horasPracticas int NOT NULL," +
+                "profesor varchar(35) NOT NULL" +
             ");" +
             "CREATE TABLE IF NOT EXISTS AlumnosDB.horarioMateria (" +
                 "idhorario int PRIMARY KEY NOT NULL AUTO_INCREMENT," +

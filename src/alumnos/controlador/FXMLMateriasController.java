@@ -92,6 +92,12 @@ public class FXMLMateriasController {
 	@FXML
 	private TextField nrcTextField;
 
+	@FXML
+	private TableColumn<Materia, String> profesorTableColumn;
+
+	@FXML
+	private TextField profesorTextField;
+
 	private ObservableList<Materia> observerMaterias = FXCollections
 			.observableArrayList();
 	private Materia materiaSelected = null;
@@ -115,6 +121,9 @@ public class FXMLMateriasController {
 		);
 		horasPracticasTableColumn.setCellValueFactory(
             new PropertyValueFactory<>("horasPracticas")
+		);
+		profesorTableColumn.setCellValueFactory(
+			new PropertyValueFactory<>("profesor")
 		);
 		materiasTableView.setItems(observerMaterias);
 
@@ -165,7 +174,8 @@ public class FXMLMateriasController {
                     nombreTextField.getText(),
                     Integer.parseInt(creditosTextField.getText()),
                     Integer.parseInt(horasTeoricasTextField.getText()),
-                    Integer.parseInt(horasPracticasTextField.getText())
+					Integer.parseInt(horasPracticasTextField.getText()),
+					profesorTextField.getText()
 				);
 				observerMaterias.add(nuevaMateria);
 				materiasToInsert.add(nuevaMateria);
@@ -198,6 +208,7 @@ public class FXMLMateriasController {
 				creditosTextField.setText(String.valueOf(materiaSelected.getCreditos()));
 				horasTeoricasTextField.setText(String.valueOf(materiaSelected.getHorasTeoricas()));
 				horasPracticasTextField.setText(String.valueOf(materiaSelected.getHorasPracticas()));
+				profesorTextField.setText(materiaSelected.getProfesor());
 				guardarButton.setDisable(false);
 			}
 		};
@@ -215,15 +226,15 @@ public class FXMLMateriasController {
 				materiaSelected = materiasTableView.getSelectionModel().getSelectedItem();
 				if (materiaSelected == null) {
 					Alert warningAlert = new Alert(
-							AlertType.WARNING,
-							"Debes seleccionar una materia primero."
+						AlertType.WARNING,
+						"Debes seleccionar una materia primero."
 					);
 					warningAlert.show();
 					return;
 				}
 				Alert deleteAlert = new Alert(
-						AlertType.CONFIRMATION,
-						"¿Estás seguro de que deseas eliminar este alumno?"
+					AlertType.CONFIRMATION,
+					"¿Estás seguro de que deseas eliminar este alumno?"
 				);
 				if (deleteAlert.showAndWait().get() == ButtonType.OK) {
 					materiasToDelete.add(materiaSelected);
@@ -259,8 +270,8 @@ public class FXMLMateriasController {
 			public void handle(ActionEvent event) {
 				if (materiaSelected == null) {
 					Alert warningAlert = new Alert(
-							AlertType.WARNING,
-							"Debes seleccionar una materia primero."
+						AlertType.WARNING,
+						"Debes seleccionar una materia primero."
 					);
 					warningAlert.show();
 					return;
@@ -271,6 +282,7 @@ public class FXMLMateriasController {
 				materiaSelected.setCreditos(Integer.parseInt(creditosTextField.getText()));
 				materiaSelected.setHorasTeoricas(Integer.parseInt(horasTeoricasTextField.getText()));
 				materiaSelected.setHorasPracticas(Integer.parseInt(horasPracticasTextField.getText()));
+				materiaSelected.setProfesor(profesorTextField.getText());
 
 				materiasToUpdate.add(materiaSelected);
 				cleanMateriaForm();
@@ -337,6 +349,7 @@ public class FXMLMateriasController {
 		creditosTextField.clear();
 		horasTeoricasTextField.clear();
 		horasPracticasTextField.clear();
+		profesorTextField.clear();
 		materiaSelected = null;
 	}
 }

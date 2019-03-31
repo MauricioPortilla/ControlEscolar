@@ -20,6 +20,7 @@ public class Materia {
     private int creditos;
     private int horasTeoricas;
     private int horasPracticas;
+    private String profesor;
     
     /**
      * Crea un objeto Materia a partir de sus datos.
@@ -29,10 +30,11 @@ public class Materia {
      * @param creditos creditos de la materia
      * @param horasTeoricas horas teoricas de la materia
      * @param horasPracticas horas practicas de la materia
+     * @param profesor profesor que imparte la materia
      */
     public Materia(
         int id, int nrc, String nombre, int creditos, 
-        int horasTeoricas, int horasPracticas
+        int horasTeoricas, int horasPracticas, String profesor
     ){
         this.id = id;
         this.nrc = nrc;
@@ -40,6 +42,7 @@ public class Materia {
         this.creditos = creditos;
         this.horasTeoricas = horasTeoricas;
         this.horasPracticas = horasPracticas;
+        this.profesor = profesor;
     }
 
     /**
@@ -59,6 +62,7 @@ public class Materia {
                     creditos = (int)row.getColumnData("creditos");
                     horasTeoricas = (int)row.getColumnData("horasTeoricas");
                     horasPracticas = (int)row.getColumnData("horasPracticas");
+                    profesor = row.getColumnData("profesor").toString();
                 }
                 return true;
             }
@@ -103,6 +107,14 @@ public class Materia {
      */
     public void setHorasPracticas(int horasPracticas){
         this.horasPracticas = horasPracticas;
+    }
+
+    /**
+     * Establece el profesor de la materia
+     * @param profesor nuevo profesor de la materia
+     */
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
     }
 
     /**
@@ -151,6 +163,10 @@ public class Materia {
      */
     public int getHorasPracticas(){
         return horasPracticas;
+    }
+
+    public String getProfesor() {
+        return profesor;
     }
 
     @Override

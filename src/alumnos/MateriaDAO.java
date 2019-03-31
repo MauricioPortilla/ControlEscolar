@@ -37,7 +37,8 @@ public class MateriaDAO implements IMateriaDAO {
                     row.getColumnData("nombre").toString(),
                     (int)row.getColumnData("creditos"),
                     (int)row.getColumnData("horasTeoricas"),
-                    (int)row.getColumnData("horasPracticas")
+                    (int)row.getColumnData("horasPracticas"),
+                    row.getColumnData("profesor").toString()
                 ));
             }
             return true;
@@ -57,11 +58,12 @@ public class MateriaDAO implements IMateriaDAO {
         parameters.add(materia.getCreditos());
         parameters.add(materia.getHorasTeoricas());
         parameters.add(materia.getHorasPracticas());
+        parameters.add(materia.getProfesor());
         // Verificar si existe la materia
         if(materia.getId() == 0){
             // No existe la materia
             SQL.executeUpdate(
-                "INSERT INTO materia VALUES (NULL, ?, ?, ?, ?, ?)", 
+                "INSERT INTO materia VALUES (NULL, ?, ?, ?, ?, ?, ?)", 
                 parameters
             );
         }
@@ -76,6 +78,7 @@ public class MateriaDAO implements IMateriaDAO {
         parameters.add(materia.getCreditos());
         parameters.add(materia.getHorasTeoricas());
         parameters.add(materia.getHorasPracticas());
+        parameters.add(materia.getProfesor());
         parameters.add(materia.getId());
         // Verificar si existe la materia
         SQL.executeQuery(
@@ -86,7 +89,7 @@ public class MateriaDAO implements IMateriaDAO {
                 // Existe la materia
                 SQL.executeUpdate(
                     "UPDATE materia SET nrc = ?, nombre = ?, creditos = ?, " +
-                    "horasTeoricas = ?, horasPracticas = ? WHERE idmateria = ?", 
+                    "horasTeoricas = ?, horasPracticas = ?, profesor = ? WHERE idmateria = ?", 
                     parameters
                 );
                 return true;
