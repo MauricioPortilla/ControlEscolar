@@ -16,7 +16,7 @@ public class SQLRow {
     /**
      * Simula una fila de una tabla SQL.
      */
-    public SQLRow(){
+    public SQLRow() {
         columnsData = new ArrayList<>();
     }
 
@@ -25,7 +25,7 @@ public class SQLRow {
      * una lista.
      * @return lista de columnas
      */
-    public ArrayList<SQLColumn<String, Object>> getColumnsData(){
+    public ArrayList<SQLColumn<String, Object>> getColumnsData() {
         return columnsData;
     }
 
@@ -34,7 +34,7 @@ public class SQLRow {
      * @param name nombre de la columna
      * @param value valor de la columna
      */
-    public void setColumnData(String name, Object value){
+    public void setColumnData(String name, Object value) {
         columnsData.add(new SQLColumn<>(name, value));
     }
 
@@ -43,9 +43,9 @@ public class SQLRow {
      * @param column nombre de la columna
      * @return si existe, retorna el valor; si no, <code>null</code>
      */
-    public Object getColumnData(String column){
-        for(int i = 0; i < columnsData.size(); i++){
-            if(columnsData.get(i).getName().equals(column)){
+    public Object getColumnData(String column) {
+        for (int i = 0; i < columnsData.size(); i++) {
+            if (columnsData.get(i).getName().equals(column)) {
                 return columnsData.get(i).getValue();
             }
         }

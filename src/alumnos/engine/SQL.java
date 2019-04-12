@@ -36,15 +36,15 @@ public class SQL {
             statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<SQLRow> list = retrieveSQLData(rs);
-            if(result != null){
-                if(!list.isEmpty()){
+            if (result != null) {
+                if (!list.isEmpty()) {
                     result.test(list);
                 }
             }
             statement.close();
             conn.close();
             return list;
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("executeQuery Error -> " + ex.getMessage());
         }
         return null;
@@ -69,8 +69,8 @@ public class SQL {
             }
             ResultSet rs = ps.executeQuery();
             ArrayList<SQLRow> list = retrieveSQLData(rs);
-            if(result != null){
-                if(!list.isEmpty()){
+            if (result != null) {
+                if (!list.isEmpty()) {
                     result.test(list);
                 }
             }
@@ -92,15 +92,15 @@ public class SQL {
      * @param returnId si deberia retornar el id de la fila afectada
      * @return el numero de filas afectadas
      */
-    public static int executeUpdate(String sql, boolean returnId){
+    public static int executeUpdate(String sql, boolean returnId) {
         int status = -1;
         try {
             Connection conn = new Database().getConnection();
             statement = conn.createStatement();
-            if(returnId){
+            if (returnId) {
                 statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
                 ResultSet rs = statement.getGeneratedKeys();
-                if(rs.next())
+                if (rs.next())
                     status = rs.getInt(1);
             } else
                 status = statement.executeUpdate(sql);
@@ -121,12 +121,12 @@ public class SQL {
      * @param parameters valores a usar en la consulta
      * @return el numero de filas afectadas
      */
-    public static int executeUpdate(String sql, ArrayList<Object> parameters){
+    public static int executeUpdate(String sql, ArrayList<Object> parameters) {
         int status = -1;
         try {
             Connection conn = new Database().getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            for(int i = 0; i < parameters.size(); i++){
+            for (int i = 0; i < parameters.size(); i++) {
                 ps.setObject(i+1, parameters.get(i));
             }
             status = ps.executeUpdate();
@@ -144,18 +144,18 @@ public class SQL {
      * @param rs resultado de la consulta
      * @return la lista con cada fila
      */
-    private static ArrayList<SQLRow> retrieveSQLData(ResultSet rs){
+    private static ArrayList<SQLRow> retrieveSQLData(ResultSet rs) {
         ArrayList<SQLRow> list = new ArrayList<>();
         try {
             ResultSetMetaData metaData = rs.getMetaData();
-            while(rs != null && rs.next()){
+            while (rs != null && rs.next()) {
                 SQLRow row = new SQLRow();
                 for(int i = 1; i <= metaData.getColumnCount(); i++){
                     row.setColumnData(metaData.getColumnName(i), rs.getObject(i));
                 }
                 list.add(row);
             }
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("retrieveSQLData Error -> " + ex.getMessage());
         }
         return list;

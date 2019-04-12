@@ -13,7 +13,7 @@ public class Engine {
     /**
      * Crea la base de datos AlumnosDB si no existe.
      */
-    public static void createDatabase(){
+    public static void createDatabase() {
         SQL.executeUpdate(
             "CREATE DATABASE IF NOT EXISTS AlumnosDB;" +
             "CREATE TABLE IF NOT EXISTS AlumnosDB.alumno (" +

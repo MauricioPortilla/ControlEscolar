@@ -181,16 +181,16 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> agregarButtonHandler(){
-        return new EventHandler<ActionEvent>(){
+    private EventHandler<ActionEvent> agregarButtonHandler() {
+        return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(
+                if (
                     nombreTextField.getText().isEmpty() ||
                     apellidoPaternoTextField.getText().isEmpty() ||
                     apellidoMaternoTextField.getText().isEmpty() ||
                     matriculaTextField.getText().isEmpty()
-                ){
+                ) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes completar todos los campos"
@@ -218,12 +218,12 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> editarButtonHandler(){
+    private EventHandler<ActionEvent> editarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 alumnoSelected = alumnosTableView.getSelectionModel().getSelectedItem();
-                if(alumnoSelected == null){
+                if (alumnoSelected == null) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes seleccionar un alumno primero."
@@ -245,12 +245,12 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> eliminarButtonHandler(){
+    private EventHandler<ActionEvent> eliminarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 alumnoSelected = alumnosTableView.getSelectionModel().getSelectedItem();
-                if(alumnoSelected == null){
+                if (alumnoSelected == null) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes seleccionar un alumno primero."
@@ -262,7 +262,7 @@ public class FXMLAlumnosController {
                     AlertType.CONFIRMATION, 
                     "¿Estás seguro de que deseas eliminar este alumno?"
                 );
-                if(deleteAlert.showAndWait().get() == ButtonType.OK){
+                if (deleteAlert.showAndWait().get() == ButtonType.OK) {
                     alumnosToDelete.add(alumnoSelected);
                     alumnosTableView.getItems().remove(alumnoSelected);
                 }
@@ -275,7 +275,7 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> limpiarButtonHandler(){
+    private EventHandler<ActionEvent> limpiarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -290,12 +290,12 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> guardarButtonHandler(){
+    private EventHandler<ActionEvent> guardarButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 alumnoSelected = alumnosTableView.getSelectionModel().getSelectedItem();
-                if(alumnoSelected == null){
+                if (alumnoSelected == null) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes seleccionar un alumno primero."
@@ -323,10 +323,10 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> salirButtonHandler(){
+    private EventHandler<ActionEvent> salirButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 salirButton.getScene().getWindow().hide();
             }
         };
@@ -341,7 +341,7 @@ public class FXMLAlumnosController {
     private EventHandler<ActionEvent> guardarArchivoButtonHandler(){
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 try {
                     FileChooser fileChooser = new FileChooser();
                     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
@@ -355,7 +355,7 @@ public class FXMLAlumnosController {
                         new FileOutputStream(file)
                     );
                     stream.writeInt(alumnosTableView.getItems().size());
-                    for(int i=0; i < alumnosTableView.getItems().size(); i++){
+                    for (int i=0; i < alumnosTableView.getItems().size(); i++) {
                         stream.writeObject(alumnosTableView.getItems().get(i));
                     }
                     stream.close();
@@ -364,7 +364,7 @@ public class FXMLAlumnosController {
                         "Alumnos guardados."
                     );
                     confirmAlert.show();
-                } catch(IOException e){
+                } catch(IOException e) {
                     Alert errorAlert = new Alert(
                         AlertType.ERROR, 
                         "Se produjo un error al guardar el archivo -> " + e.getMessage()
@@ -380,17 +380,17 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> guardarBDButtonHandler(){
+    private EventHandler<ActionEvent> guardarBDButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
-                for(Alumno alumno : alumnosToInsert){
+            public void handle(ActionEvent event) {
+                for (Alumno alumno : alumnosToInsert) {
                     alumnoDAO.insertAlumno(alumno);
                 }
-                for(Alumno alumno : alumnosToUpdate){
+                for (Alumno alumno : alumnosToUpdate) {
                     alumnoDAO.updateAlumno(alumno);
                 }
-                for(Alumno alumno : alumnosToDelete){
+                for (Alumno alumno : alumnosToDelete) {
                     alumnoDAO.deleteAlumno(alumno);
                 }
                 Alert saveAlert = new Alert(
@@ -413,12 +413,11 @@ public class FXMLAlumnosController {
     private EventHandler<ActionEvent> cargarBDButtonHandler(){
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 alumnosTableView.getItems().clear();
                 alumnoDAO.loadAlumnos();
                 observerAlumnos = alumnoDAO.getAlumnos();
                 alumnosTableView.setItems(observerAlumnos);
-                // new Alert(AlertType.INFORMATION, "Alumnos cargados.").show();
                 alumnosToInsert.clear();
                 alumnosToUpdate.clear();
                 alumnosToDelete.clear();
@@ -431,10 +430,10 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> cargarArchivoButtonHandler(){
+    private EventHandler<ActionEvent> cargarArchivoButtonHandler() {
         return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 try {
                     alumnosToInsert.clear();
                     alumnosToUpdate.clear();
@@ -450,35 +449,30 @@ public class FXMLAlumnosController {
                         cargarArchivoButton.getScene().getWindow()
                     );
 
-                    ObjectInputStream stream = new ObjectInputStream(
-                        new FileInputStream(file)
-                    );
+                    ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
                     int numberOfAlumnos = stream.readInt();
-                    for(int i=1; i <= numberOfAlumnos; i++){
+                    for (int i=1; i <= numberOfAlumnos; i++) {
                         Object alumnoObject = stream.readObject();
                         alumnosTableView.getItems().add((Alumno)alumnoObject);
                         alumnosTableView.getItems().get(i-1).resetStringProperties();
                     }
                     stream.close();
 
-                    Alert confirmAlert = new Alert(
-                        AlertType.INFORMATION, 
-                        "Alumnos cargados."
-                    );
+                    Alert confirmAlert = new Alert(AlertType.INFORMATION, "Alumnos cargados.");
                     confirmAlert.show();
-                } catch(ClassNotFoundException classException){
+                } catch (ClassNotFoundException classException) {
                     Alert errorAlert = new Alert(
                         AlertType.ERROR, 
                         "Se produjo un error al cargar el archivo -> " + classException.getMessage()
                     );
                     errorAlert.show();
-                } catch(IOException e){
+                } catch (IOException e) {
                     Alert errorAlert = new Alert(
                         AlertType.ERROR, 
                         "Se produjo un error al cargar el archivo -> " + e.getMessage()
                     );
                     errorAlert.show();
-                } catch(Exception ex){
+                } catch (Exception ex) {
                     System.out.println(
                         "Se produjo un error al cargar el archivo -> " + ex.getMessage()
                     );
@@ -492,10 +486,10 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> materiasFormButtonHandler(){
-        return new EventHandler<ActionEvent>(){
+    private EventHandler<ActionEvent> materiasFormButtonHandler() {
+        return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 Parent root;
                 try {
                     root = FXMLLoader.load(getClass().getResource(
@@ -518,10 +512,10 @@ public class FXMLAlumnosController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> horariosMateriasFormButtonHandler(){
-        return new EventHandler<ActionEvent>(){
+    private EventHandler<ActionEvent> horariosMateriasFormButtonHandler() {
+        return new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 Parent root;
                 try {
                     root = FXMLLoader.load(getClass().getResource(

@@ -141,17 +141,17 @@ public class FXMLHorarioMateriasController {
      * 
      * @return el evento
      */
-    private EventHandler<ActionEvent> agregarButtonHandler(){
-        return new EventHandler<ActionEvent>(){
+    private EventHandler<ActionEvent> agregarButtonHandler() {
+        return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(
+                if (
                     materiaComboBox.getValue() == null ||
                     salonTextField.getText().isEmpty() ||
                     horaInicioTextField.getText().isEmpty() ||
                     horaFinTextField.getText().isEmpty() ||
                     diaComboBox.getValue() == null
-                ){
+                ) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes completar todos los campos"
@@ -212,7 +212,7 @@ public class FXMLHorarioMateriasController {
             @Override
             public void handle(ActionEvent event) {
                 horarioSelected = horariosTableView.getSelectionModel().getSelectedItem();
-                if(horarioSelected == null){
+                if (horarioSelected == null) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes seleccionar un horario primero."
@@ -224,7 +224,7 @@ public class FXMLHorarioMateriasController {
                     AlertType.CONFIRMATION, 
                     "¿Estás seguro de que deseas eliminar este horario?"
                 );
-                if(deleteAlert.showAndWait().get() == ButtonType.OK){
+                if (deleteAlert.showAndWait().get() == ButtonType.OK) {
                     horariosToDelete.add(horarioSelected);
                     horariosTableView.getItems().remove(horarioSelected);
                 }
@@ -256,7 +256,7 @@ public class FXMLHorarioMateriasController {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(horarioSelected == null){
+                if (horarioSelected == null) {
                     Alert warningAlert = new Alert(
                         AlertType.WARNING, 
                         "Debes seleccionar un horario primero."
@@ -268,7 +268,7 @@ public class FXMLHorarioMateriasController {
                 try {
                     horarioSelected.setHoraInicio(LocalTime.parse(horaInicioTextField.getText()));
                     horarioSelected.setHoraFin(LocalTime.parse(horaFinTextField.getText()));
-                } catch(DateTimeParseException ex){
+                } catch (DateTimeParseException ex) {
                     new Alert(AlertType.WARNING, "Ingresa una hora válida.").show();
                     return;
                 }

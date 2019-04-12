@@ -18,7 +18,7 @@ public class SQLColumn<K, V> {
      * @param name nombre de la columna
      * @param value valor de la columna
      */
-    public SQLColumn(K name, V value){
+    public SQLColumn(K name, V value) {
         key = name;
         this.value = value;
     }
@@ -26,7 +26,7 @@ public class SQLColumn<K, V> {
      * Obtiene el nombre de la columna
      * @return el nombre de la columna
      */
-    public K getName(){
+    public K getName() {
         return key;
     }
 
@@ -34,7 +34,7 @@ public class SQLColumn<K, V> {
      * Obtiene el valor de la columna
      * @return el valor de la columna
      */
-    public V getValue(){
+    public V getValue() {
         return value;
     }
 }

@@ -18,7 +18,7 @@ public class Database {
     /**
      * Crea la conexion a la base de datos
      */
-    public Database(){
+    public Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             System.out.println("Connecting...");
@@ -30,7 +30,7 @@ public class Database {
         } catch(ClassNotFoundException classException){
             classException.printStackTrace();
         } catch(Exception e){
-            System.out.println("Se produjo un error inesperado: "+e.getMessage());
+            System.out.println("Se produjo un error inesperado: " + e.getMessage());
         }
     }
     
@@ -38,18 +38,18 @@ public class Database {
      * Retorna la conexion a la base de datos
      * @return la conexion
      */
-    public Connection getConnection(){
+    public Connection getConnection() {
         return connection;
     }
     
     /**
      * Cierra la conexion a la base de datos
      */
-    public void close(){
+    public void close() {
         try {
             connection.close();
-        }  catch(SQLException sqlException){
-            System.err.println ("Error: " + sqlException.getMessage () + "\n" + sqlException.getErrorCode ());
+        } catch (SQLException sqlException) {
+            System.err.println("Error: " + sqlException.getMessage () + "\n" + sqlException.getErrorCode ());
         }
     }
 }

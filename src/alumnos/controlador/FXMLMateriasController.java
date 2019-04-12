@@ -98,8 +98,7 @@ public class FXMLMateriasController {
 	@FXML
 	private TextField profesorTextField;
 
-	private ObservableList<Materia> observerMaterias = FXCollections
-			.observableArrayList();
+	private ObservableList<Materia> observerMaterias = FXCollections.observableArrayList();
 	private Materia materiaSelected = null;
 	private final ArrayList<Materia> materiasToInsert = new ArrayList<>();
 	private final ArrayList<Materia> materiasToUpdate = new ArrayList<>();
