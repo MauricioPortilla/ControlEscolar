@@ -127,6 +127,9 @@ public class FXMLAlumnosController {
     @FXML
     private MenuItem asignarHorarioMenuItem;
 
+    @FXML
+    private MenuItem consultarHorarioMenuItem;
+
     private ObservableList<Alumno> observerAlumnos = FXCollections.observableArrayList();
     private Alumno alumnoSelected = null;
     private final ArrayList<Alumno> alumnosToInsert = new ArrayList<>();
@@ -167,6 +170,7 @@ public class FXMLAlumnosController {
         menuItemMaterias.setOnAction(materiasFormButtonHandler());
         horariosMateriasMenuItem.setOnAction(horariosMateriasFormButtonHandler());
         asignarHorarioMenuItem.setOnAction(horariosAlumnosFormButtonHandler());
+        consultarHorarioMenuItem.setOnAction(consultaHorarioAlumnoFormButtonHandler());
 
         cargarBDButton.setVisible(false);
         cargarArchivoButton.setVisible(false);
@@ -188,7 +192,6 @@ public class FXMLAlumnosController {
                 if (
                     nombreTextField.getText().isEmpty() ||
                     apellidoPaternoTextField.getText().isEmpty() ||
-                    apellidoMaternoTextField.getText().isEmpty() ||
                     matriculaTextField.getText().isEmpty()
                 ) {
                     Alert warningAlert = new Alert(
@@ -554,6 +557,32 @@ public class FXMLAlumnosController {
                     stage.show();
                 } catch (IOException ex) {
                     System.out.println("Error al abrir la ventana Horario de Alumno");
+                }
+            }
+        };
+    }
+
+    private EventHandler<ActionEvent> consultaHorarioAlumnoFormButtonHandler() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (alumnosTableView.getSelectionModel().getSelectedItem() == null) {
+                    new Alert(AlertType.WARNING, "Debes seleccionar un alumno primero.").show();
+                    return;
+                }
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/alumnos/interfaz/FXMLHorarioAlumno.fxml"
+                    ));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene((AnchorPane)loader.load()));
+                    stage.setTitle("Consulta horario del alumno - Mauricio Cruz Portilla");
+                    FXMLHorarioAlumnoController controller = loader.
+                        <FXMLHorarioAlumnoController>getController();
+                    controller.initData(alumnosTableView.getSelectionModel().getSelectedItem());
+                    stage.show();
+                } catch (IOException ex) {
+                    System.out.println("Error al abrir la ventana Horario de Alumno -> " + ex.getMessage());
                 }
             }
         };

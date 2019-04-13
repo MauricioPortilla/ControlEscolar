@@ -30,6 +30,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -37,6 +38,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class FXMLHorarioAlumnosController {
+
+    private static final int MAX_CREDITOS_HORARIO = 350 / 6;
 
     @FXML
     private ResourceBundle resources;
@@ -89,10 +92,16 @@ public class FXMLHorarioAlumnosController {
     @FXML
     private TableColumn<HorarioMateria, String> salonTableColumn_elegido;
 
-    private Alumno alumno;
+    @FXML
+    private Label creditosLabel;
 
-    private ObservableList<HorarioMateria> observerHorariosDisponibles = FXCollections.observableArrayList();
-    private ObservableList<HorarioMateria> observerHorariosElegidos = FXCollections.observableArrayList();
+    private Alumno alumno;
+    private int creditosHorario = 0;
+
+    private ObservableList<HorarioMateria> observerHorariosDisponibles = 
+            FXCollections.observableArrayList();
+    private ObservableList<HorarioMateria> observerHorariosElegidos = 
+            FXCollections.observableArrayList();
     private HorarioMateria horarioSelected = null;
     private final ArrayList<HorarioMateria> horariosToInsert = new ArrayList<>();
     private final ArrayList<HorarioMateria> horariosToDelete = new ArrayList<>();
@@ -106,7 +115,9 @@ public class FXMLHorarioAlumnosController {
         materiaTableColumn_elegido.setCellValueFactory(new PropertyValueFactory<>("materia"));
         salonTableColumn_disponible.setCellValueFactory(new PropertyValueFactory<>("salon"));
         salonTableColumn_elegido.setCellValueFactory(new PropertyValueFactory<>("salon"));
-        horaInicioTableColumn_disponible.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
+        horaInicioTableColumn_disponible.setCellValueFactory(
+            new PropertyValueFactory<>("horaInicio")
+        );
         horaInicioTableColumn_elegido.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
         horaFinTableColumn_disponible.setCellValueFactory(new PropertyValueFactory<>("horaFin"));
         horaFinTableColumn_elegido.setCellValueFactory(new PropertyValueFactory<>("horaFin"));
@@ -139,16 +150,32 @@ public class FXMLHorarioAlumnosController {
     private void loadAlumnoHorarioBD() {
         horarioDisponibleTableView.getItems().clear();
         horarioElegidoTableView.getItems().clear();
+
         horarioAlumnoDAO.loadHorariosAlumno(alumno);
         observerHorariosElegidos = horarioAlumnoDAO.getHorariosAlumnoMateria();
         horarioElegidoTableView.setItems(observerHorariosElegidos);
         
         horarioDAO.loadHorariosMaterias();
         observerHorariosDisponibles = horarioDAO.getHorariosMaterias();
-        // Eliminar horarios elegidos de los disponibles
+        // Eliminar horarios elegidos de los disponibles y sumar creditos
+        ArrayList<HorarioMateria> materiasConsideradas = new ArrayList<>();
         for (HorarioMateria horario : observerHorariosElegidos) {
+            boolean horarioFound = false;
+            for (HorarioMateria horarioConsiderado : materiasConsideradas) {
+                if (horarioConsiderado.getMateria().getNrc() == horario.getMateria().getNrc()) {
+                    observerHorariosDisponibles.remove(horario);
+                    horarioFound = true;
+                    break;
+                }
+            }
+            if (horarioFound) {
+                continue;
+            }
+            creditosHorario += horario.getMateria().getCreditos();
+            materiasConsideradas.add(horario);
             observerHorariosDisponibles.remove(horario);
         }
+        creditosLabel.setText("Créditos: " + creditosHorario);
         horarioDisponibleTableView.setItems(observerHorariosDisponibles);
         
         horariosToInsert.clear();
@@ -174,15 +201,35 @@ public class FXMLHorarioAlumnosController {
                     if (horario.equals(horarioSelected)) {
                         new Alert(
                             AlertType.WARNING, 
-                            "No puedes seleccionar este horario porque coincide con uno de tus elegidos."
+                            "No puedes seleccionar este horario porque coincide " +
+                            "con uno de tus elegidos."
                         ).show();
                         return;
                     }
                 }
-                horarioElegidoTableView.getItems().add(horarioSelected);
-                horarioDisponibleTableView.getItems().remove(horarioSelected);
-                horariosToInsert.add(horarioSelected);
-                horariosToDelete.remove(horarioSelected);
+                if ((creditosHorario + horarioSelected.getMateria().getCreditos()) > 
+                    MAX_CREDITOS_HORARIO) {
+                    new Alert(
+                        AlertType.WARNING, 
+                        "No puedes seleccionar este horario porque ya excediste " +
+                        "el máximo de créditos."
+                    ).show();
+                    return;
+                }
+                creditosHorario += horarioSelected.getMateria().getCreditos();
+                creditosLabel.setText("Créditos: " + creditosHorario);
+                for (HorarioMateria horario : horarioDisponibleTableView.getItems()) {
+                    if (horario.getMateria().getNrc() == horarioSelected.getMateria().getNrc()) {
+                        horariosToInsert.add(horario);
+                        horariosToDelete.remove(horario);
+                    }
+                }
+                for (HorarioMateria horario : horariosToInsert) {
+                    if (!horarioElegidoTableView.getItems().contains(horario)) {
+                        horarioElegidoTableView.getItems().add(horario);
+                        horarioDisponibleTableView.getItems().remove(horario);
+                    }
+                }
                 horarioSelected = null;
             }
         };
@@ -202,10 +249,21 @@ public class FXMLHorarioAlumnosController {
                     new Alert(AlertType.WARNING, "Debes seleccionar un horario primero.").show();
                     return;
                 }
-                horarioDisponibleTableView.getItems().add(horarioSelected);
-                horarioElegidoTableView.getItems().remove(horarioSelected);
-                horariosToDelete.add(horarioSelected);
-                horariosToInsert.remove(horarioSelected);
+                creditosHorario -= horarioSelected.getMateria().getCreditos();
+                creditosLabel.setText("Créditos: " + creditosHorario);
+
+                for (HorarioMateria horario : horarioElegidoTableView.getItems()) {
+                    if (horario.getMateria().getNrc() == horarioSelected.getMateria().getNrc()) {
+                        horariosToDelete.add(horario);
+                        horariosToInsert.remove(horario);
+                    }
+                }
+                for (HorarioMateria horario : horariosToDelete) {
+                    if (!horarioDisponibleTableView.getItems().contains(horario)) {
+                        horarioDisponibleTableView.getItems().add(horario);
+                        horarioElegidoTableView.getItems().remove(horario);
+                    }
+                }
                 horarioSelected = null;
             }
         };
@@ -221,11 +279,17 @@ public class FXMLHorarioAlumnosController {
             @Override
             public void handle(ActionEvent event) {
                 for (HorarioMateria horarioMateria : horariosToInsert) {
+                    if (horarioAlumnoDAO.getHorariosAlumnoMateria().contains(horarioMateria)) {
+                        continue;
+                    }
                     horarioAlumnoDAO.insertHorarioAlumno(
                         new HorarioAlumno(0, horarioMateria.getId(), alumno.getMatricula())
                     );
                 }
                 for (HorarioMateria horarioMateria : horariosToDelete) {
+                    if (!horarioAlumnoDAO.getHorariosAlumnoMateria().contains(horarioMateria)) {
+                        continue;
+                    }
                     horarioAlumnoDAO.deleteHorarioAlumno(
                         new HorarioAlumno(0, horarioMateria.getId(), alumno.getMatricula())
                     );

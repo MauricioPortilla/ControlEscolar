@@ -25,7 +25,7 @@ public class HorarioAlumnoDAO implements IHorarioAlumnoDAO {
     public void loadHorariosAlumno(Alumno alumno) {
         horariosAlumno.clear();
         SQL.executeQuery("SELECT * FROM horarioAlumno WHERE matriculaAlumno = ?;", 
-            new ArrayList<Object>(){
+            new ArrayList<Object>() {
                 { add(alumno.getMatricula()); }
             }, (result) -> {
                 for (SQLRow row : result) {

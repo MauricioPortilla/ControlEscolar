@@ -70,5 +70,10 @@
       </font>
     </Label>
     <Label font="$x4" layoutX="810.0" layoutY="95.0" text="Horario seleccionado" />
+    <Label fx:id="creditosLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1112.0" layoutY="434.0" text="Créditos: 0" textAlignment="RIGHT">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Label>
   </children>
 </AnchorPane>

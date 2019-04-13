@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="alumnos.controlador.FXMLHorarioAlumnoController">
+  <children>
+    <Label id="label" layoutX="186.0" layoutY="127.0" minHeight="16.0" minWidth="69.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" layoutX="0.0" layoutY="-11.0" stroke="WHITE" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="0.0" layoutY="33.0" stroke="$x1" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.616" green="0.322" red="0.094" fx:id="x1" />
+      </fill>
+    </Rectangle>
+    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="28.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="file:/E:/Alumnos/src/alumnos/icono/arkanlogo.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="474.0" layoutY="23.0" text="Horario" textFill="WHITE">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <TableView id="horariosTableView" fx:id="horarioTableView" layoutX="89.0" layoutY="135.0" prefHeight="296.0" prefWidth="937.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" text="Lunes" fx:id="lunesTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="166.0" text="Martes" fx:id="martesTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="152.0" text="Miércoles" fx:id="miercolesTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="160.0" text="Jueves" fx:id="juevesTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="160.0" text="Viernes" fx:id="viernesTableColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="132.0" text="Sábado" fx:id="sabadoTableColumn" />
+      </columns>
+    </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="25.0" layoutX="0.0" layoutY="586.0" stroke="$x1" strokeType="INSIDE" width="1100.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="0.0" layoutY="565.0" stroke="$x2" strokeType="INSIDE" width="1100.0">
+      <fill>
+        <Color blue="0.337" green="0.678" red="0.157" fx:id="x2" />
+      </fill>
+    </Rectangle>
+  </children>
+</AnchorPane>

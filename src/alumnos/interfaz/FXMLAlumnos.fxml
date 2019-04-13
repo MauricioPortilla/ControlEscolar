@@ -81,6 +81,7 @@
         <Menu mnemonicParsing="false" text="Alumno">
           <items>
             <MenuItem mnemonicParsing="false" text="Asignar horario" fx:id="asignarHorarioMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Consultar horario" fx:id="consultarHorarioMenuItem" />
           </items>
         </Menu>
       </menus>

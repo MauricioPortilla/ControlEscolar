@@ -191,4 +191,9 @@ public class HorarioMateria {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return materia.getNombre() + "\n" + horaInicio.toString() + " - " + horaFin.toString();
+    }
 }

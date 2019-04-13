@@ -20,7 +20,7 @@ public class Engine {
                 "matricula varchar(9) PRIMARY KEY NOT NULL," +
                 "nombre varchar(20) NOT NULL," +
                 "paterno varchar(20) NOT NULL," +
-                "materno varchar(20) NOT NULL" +
+                "materno varchar(20) NULL" +
             ");" +
             "CREATE TABLE IF NOT EXISTS AlumnosDB.materia (" +
                 "idmateria int PRIMARY KEY NOT NULL AUTO_INCREMENT," +
